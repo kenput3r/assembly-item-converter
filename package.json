@@ -1,0 +1,24 @@
+{
+  "name": "assembly-item-converter",
+  "version": "1.0.0",
+  "description": "Converts inventory.dearsystems.com BOM exports to NetSuite AssemblyItem imports",
+  "main": "app.js",
+  "dependencies": {
+    "csv-writer": "^1.5.0",
+    "csvtojson": "^2.0.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenput3r/assembly-item-converter.git"
+  },
+  "author": "kenput3r",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenput3r/assembly-item-converter/issues"
+  },
+  "homepage": "https://github.com/kenput3r/assembly-item-converter#readme"
+}
