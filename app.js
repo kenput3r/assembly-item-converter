@@ -31,14 +31,14 @@ const records = {};
               }
             }
           }else{
-            records[product.ProductCode] = utils.ReturnObject(product, shopify_retail_items, shopify_wholesale_items);
+            records[product.ProductCode] = utils.CreateObject(product, shopify_retail_items, shopify_wholesale_items);
             records[product.ProductCode][`Component 1 - Item`] = bom_item.ComponentSKU;
             records[product.ProductCode][`Component 1 - Quantity`] = bom_item.Quantity;
           }
         }
       }
     }else{
-      records[product.ProductCode] = utils.ReturnObject(product, shopify_retail_items, shopify_wholesale_items);
+      records[product.ProductCode] = utils.CreateObject(product, shopify_retail_items, shopify_wholesale_items);
     }
   }
   //convert records object to array
