@@ -25,6 +25,8 @@ exports.CreateObject = (dear_inventory_item, shopify_retail_items, shopify_whole
     [`Weight Unit`]: dear_inventory_item.WeightUnits,
     [`Tax Schedule`]: `Taxable`,
     [`UPC Code`]: dear_inventory_item.Barcode,
+    [`Subitem of`]: dear_inventory_item.ProductFamilySKU,
+    [`Matrix Option - Sizes`]: dear_inventory_item.ProductFamilyOption1Value,
     [`Shopify Wholesale Product Handle`]: swi[key] ? swi[key][`Handle`] : ``,
     [`Shopify Wholesale Published Scope`]: swi[key] ? swi[key][`Published`] : ``,
     [`Shopify Wholesale Price`]: swi[key] ? swi[key][`Variant Price`] : ``,
@@ -73,6 +75,8 @@ exports.Headers = [
   { id: `Weight Unit`, title: `Weight Unit` },
   { id: `Tax Schedule`, title: `Tax Schedule` },
   { id: `UPC Code`, title: `UPC Code` },
+  { id: `Subitem of`, title: `Subitem of` },
+  { id: `Matrix Option - Sizes`, title: `Matrix Option - Sizes` },
   { id: `Shopify Wholesale Product Handle`, title: `Shopify Wholesale Product Handle` },
   { id: `Shopify Wholesale Published Scope`, title: `Shopify Wholesale Published Scope` },
   { id: `Shopify Wholesale Price`, title: `Shopify Wholesale Price` },
@@ -184,7 +188,7 @@ GenerateClass = (sku, name, category) => {
     }
   }
   //Merchandise
-  if(sku.charAt(0) === 'M' || sku.charAt(0) === 'C') {
+  else if(sku.charAt(0) === 'M' || sku.charAt(0) === 'C') {
     const classes = [
       {string: 'Mug', subClass: 'Cups & Mugs'},
       {string: 'Pint Glass', subClass: 'Cups & Mugs'},
@@ -195,7 +199,7 @@ GenerateClass = (sku, name, category) => {
       {string: 'Switchblade', subClass: 'Novelty & Toys'},
       {string: 'Doll', subClass: 'Novelty & Toys'},
       {string: 'Bobble', subClass: 'Novelty & Toys'},
-      {string: 'Pillow', subClass: 'Novelty& Toys'},
+      {string: 'Pillow', subClass: 'Novelty & Toys'},
       {string: 'Lanyard', subClass: 'Accessories'},
       {string: 'Sunglasses', subClass: 'Accessories'},
       {string: 'Wallet', subClass: 'Accessories'},
@@ -217,7 +221,7 @@ GenerateClass = (sku, name, category) => {
     }
   }
   //Apparel
-  if(sku.charAt(0) === 'S' || sku.charAt(0) === 'H') {
+  else if(sku.charAt(0) === 'S' || sku.charAt(0) === 'H') {
     const classes = [
       {string: 'Tee', subClass: 'Shirts'},
       {string: 'Shirt', subClass: 'Shirts'},
@@ -244,7 +248,7 @@ GenerateClass = (sku, name, category) => {
     }
   }
   //Beauty
-  if(sku.charAt(0) === 'P' || sku.charAt(0) === 'K') {
+  else if(sku.charAt(0) === 'P' || sku.charAt(0) === 'K') {
     const classes = [
       {string: 'Brow Pomade', subClass: 'Cosmetics'},
       {string: 'Pomade Pencil', subClass: 'Hair'},
@@ -274,5 +278,13 @@ GenerateClass = (sku, name, category) => {
         return `${parent_class} : Other`;
       }
     }
+  }
+  //Gunthers Items
+  else if(sku.charAt(0).toLowerCase() === 'g' && sku.charAt(1).toLowerCase() === 'u') {
+    return 'Other Brands : Gunthers';
+  }
+  //Tres Noir Items
+  else if(sku.charAt(0).toLowerCase() == 't' && sku.charAt(1).toLowerCase() == 'n') {
+    return 'Other Brands : Tres Noir';
   }
 }
